@@ -139,6 +139,11 @@ public class MyStore {
 		System.out.println("Delete product...");
 		System.out.println();
 	}
+//	added a method to print my name
+//	Anastasia Sullivan 11/19/2020
+	private void anastasia() {
+		System.out.println("Anastasia");
+	}
 
 }
 
