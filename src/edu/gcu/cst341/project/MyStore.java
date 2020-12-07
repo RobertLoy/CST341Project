@@ -212,6 +212,7 @@ public class MyStore {
 	}
 //	Method Outline Created 
 //	Anastasia Sullivan 12/05/2020	
+	
 	private void deleteProduct() {
 		System.out.println("Delete product...");
 		System.out.println("Here are the current products.");
