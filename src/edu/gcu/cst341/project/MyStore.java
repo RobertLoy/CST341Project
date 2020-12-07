@@ -112,7 +112,8 @@ public class MyStore {
 			open();
 		}
 	}
-	
+//	Method Outline Created 
+//	Anastasia Sullivan 12/05/2020
 	private void createCartItem() {
 		System.out.println("Add (Create) item to cart...");
 		readProducts();
@@ -131,7 +132,8 @@ public class MyStore {
 		}
 		
 	}
-	
+//	Method Outline Created 
+//	Anastasia Sullivan 12/05/2020	
 	private void readCartItems() {
 		System.out.println("View (Read) cart...");
 		System.out.println(customer + ", Here are the contents of your shopping cart.");
@@ -158,27 +160,15 @@ public class MyStore {
 	
 	private void deleteCartItem() {
 		System.out.println("Delete from cart...");
-		System.out.println("Choose from the following items to delete:");
-		readCartItems();
-		System.out.println("Type the Product ID of the item you wish to remove, and press enter.");
-		int id = sc.nextInt();
-		sc.nextLine();
-		String sql = "DELETE FROM shopping_cart WHERE user_id = ? and product_id = ?";
-		try (PreparedStatement ps = con.getConnection().prepareStatement(sql)){
-			ps.setInt(1, id);
-			ps.setInt(2, userID);
-			ps.execute();
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
+		System.out.println();
 	}
 	
 	private void createProduct() {
 		System.out.println("Create product...");
 		System.out.println();
 	}
-	
+//	Method Outline Created 
+//	Anastasia Sullivan 12/05/2020
 	private void readProducts() {
 		System.out.println("View (Read) all products...");
 		System.out.println();
@@ -195,7 +185,8 @@ public class MyStore {
 			e.printStackTrace();
 		}
 	}
-	
+//	Method Outline Created 
+//	Anastasia Sullivan 12/05/2020	
 	private void updateProduct() {
 		System.out.println("Update product...");
 		System.out.println("Which of the following products would you like to update?");
@@ -219,7 +210,8 @@ public class MyStore {
 			e.printStackTrace();
 		}
 	}
-	
+//	Method Outline Created 
+//	Anastasia Sullivan 12/05/2020	
 	private void deleteProduct() {
 		System.out.println("Delete product...");
 		System.out.println("Here are the current products.");
