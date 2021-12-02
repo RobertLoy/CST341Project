@@ -7,5 +7,9 @@ public class Driver {
 		gcu.open();
 
 	}
-
+//Desiree Mealey-Vasquez
+	//Practice GitHub 12.01.2021
+	public static void doDez() {
+		System.out.println("Desiree Mealey-Vasquez");
+	}
 }
