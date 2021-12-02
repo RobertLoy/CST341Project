@@ -8,6 +8,13 @@ public class Driver {
 
 	}
 
+//Allen Craig
+	// practice GitHub 2021Dec01
+	public static void doAllen() {
+		System.out.println("Allen Craig");
+	}//
+
+
  //Madalina Marian
 	//Practice GitHub 2021-Dec-01
 	
@@ -27,4 +34,5 @@ public class Driver {
 		System.out.println("My name is Matt");
 
 	}
+
 }
