@@ -7,5 +7,10 @@ public class Driver {
 		gcu.open();
 
 	}
-
+ //Madalina Marian
+	//Practice GitHub 2021-Dec-01
+	
+	public static void Madalina() {
+		System.out.println("Madalina");
+	}
 }
