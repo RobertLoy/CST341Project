@@ -1,10 +1,14 @@
 package edu.gcu.cst341.project;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Scanner;
 
 public class MyStore {
-
+	
+	private Scanner sc = new Scanner(System.in);//Allen Craig Dec02
 	private String name; 
 	private DBConnect con;
 
@@ -138,6 +142,25 @@ public class MyStore {
 	private void deleteProduct() {
 		System.out.println("Delete product...");
 		System.out.println();
+		//Allen Craig Dec02
+		readProducts();
+		System.out.println("=======================================================");
+		System.out.println("Enter the Product ID that you would like to Delete: " + "\n");
+		int productId = sc.nextInt();
+		sc.nextLine();
+
+		String sqlD = "DELETE FROM products WHERE productId = ?";
+		try {
+			PreparedStatement ps = con.getConnection().prepareStatement(sqlD);
+			ps.setInt(1, productId);
+			ps.execute();
+			readProducts();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
 	}
 
 }
