@@ -8,6 +8,13 @@ public class Driver {
 
 	}
 
+ //Madalina Marian
+	//Practice GitHub 2021-Dec-01
+	
+	public static void Madalina() {
+		System.out.println("Madalina");
+
+  }
 //Desiree Mealey-Vasquez
 	//Practice GitHub 12.01.2021
 	public static void doDez() {
