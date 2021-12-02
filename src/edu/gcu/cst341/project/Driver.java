@@ -7,5 +7,9 @@ public class Driver {
 		gcu.open();
 
 	}
-
+//Allen Craig
+	// practice GitHub 2021Dec01
+	public static void doAllen() {
+		System.out.println("Allen Craig");
+	}//
 }
