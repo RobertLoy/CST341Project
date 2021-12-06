@@ -2,11 +2,14 @@ package edu.gcu.cst341.project;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Scanner;
 
 public class MyStore {
 
 	private String name; 
 	private DBConnect con;
+	private Scanner sc = new Scanner(System.in);//Madalina Marian Dec02
 
 	MyStore (String name){
 		this.name = name;
@@ -120,9 +123,36 @@ public class MyStore {
 		System.out.println();
 	}
 	
-	private void createProduct() {
+	private void createProduct() { //Madalina Marian Dec02
 		System.out.println("Create product...");
 		System.out.println();
+		System.out.println("==============================" + "\n");
+		System.out.println("What is the Product Id Number?");
+		int productId = sc.nextInt();
+		sc.nextLine();
+		System.out.println("What is the Product Name?");
+		String pName = sc.nextLine();
+		System.out.println("What is the Product Price?");
+		String pPrice = sc.nextLine();
+		System.out.println("What is the Product Stock Status?");
+		int pStockStatus = sc.nextInt();
+		
+		String sql = "INSERT INTO products" + "(ProductID, ProductName, ProductPrice, ProductStockStatus)"
+				+ "VALUE (?,?,?,?);";
+		try {
+			
+			PreparedStatement ps = con.getConnection().prepareStatement(sql);
+			ps.setInt(1, productId);
+			ps.setString(2, pName);
+			ps.setString(3, pPrice);
+			ps.setInt(4, pStockStatus);
+			ps.execute();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		readProducts();
 	}
 	
 	private void readProducts() {
@@ -132,7 +162,7 @@ public class MyStore {
 	
 	private void updateProduct() {
 		System.out.println("Update product...");
-		System.out.println();
+
 	}
 	
 	private void deleteProduct() {
