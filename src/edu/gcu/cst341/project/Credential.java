@@ -11,8 +11,8 @@ public class Credential {
 	private int userStatus;
 	private int productID;
 	private String pName;
-	private int pPrice;
-	private boolean pStockStatus;
+	private double pPrice;
+	private int pStockStatus;
 	private Date addDate;
 
 	public int getUserId() {
@@ -71,19 +71,19 @@ public class Credential {
 		this.pName = pName;
 	}
 
-	public int getpPrice() {
+	public double getpPrice() {
 		return pPrice;
 	}
 
-	public void setpPrice(int pPrice) {
+	public void setpPrice(double pPrice) {
 		this.pPrice = pPrice;
 	}
 
-	public boolean getpStockStatus() {
+	public int getpStockStatus() {
 		return pStockStatus;
 	}
 
-	public void setpStockStatus(boolean pStockStatus) {
+	public void setpStockStatus(int pStockStatus) {
 		this.pStockStatus = pStockStatus;
 	}
 
@@ -111,7 +111,7 @@ public class Credential {
 		this.userStatus = userStatus;
 	}
 
-	public Credential(int productID, String pName, int pPrice, boolean pStockStatus) {
+	public Credential(int productID, String pName, double pPrice, int pStockStatus) {
 		super();
 		this.productID = productID;
 		this.pName = pName;

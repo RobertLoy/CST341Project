@@ -11,10 +11,8 @@ import java.util.Scanner;
 public class MyStore {
 
 	private Scanner sc = new Scanner(System.in);
-
 	private String name; 
 	private DBConnect con;
-	private Scanner sc = new Scanner(System.in);//Madalina Marian Dec02
 
 	MyStore (String name){
 		this.name = name;
