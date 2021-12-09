@@ -191,7 +191,7 @@ public class MyStore {
 
 		readProducts();
 		System.out.println("------------------");
-		System.out.println("Enter the product ID you would like to add to the shopping cart." + "\n");
+		System.out.println("Enter the product ID you would like to update." + "\n");
 		int productId = sc.nextInt();
 		sc.nextLine();
 		
@@ -248,15 +248,16 @@ public class MyStore {
 		e.printStackTrace();
 	}
 	
-	String sql = "UPDATE products SET productPrice = ?, productStockStatus = ? WHERE productName = ?"; //visit productId focus on 5th ?, disallow the productid as primary key editing
+	String sql = "UPDATE products SET productPrice = ?, productStockStatus = ?, productName = ? WHERE productId = ?"; //visit productId focus on 5th ?, disallow the productid as primary key editing
 			
 			try {
 				PreparedStatement ps = con.getConnection().prepareStatement(sql);
 				//ps.setInt(1, productId);// specified type of parameter value compatable with sql
 				//ps.setString(1, pname);
-				ps.setDouble(1, pprice);
-				ps.setInt(2, pstockstatus);
-				ps.setString(3, pname); //ps.setInt(4, this.parseInt(productId1));
+				ps.setDouble(1, c1.getpPrice());
+				ps.setInt(2, c1.getpStockStatus());
+				ps.setString(3, c1.getpName()); 
+				ps.setInt(4, productId);
 			
 				// pst.setString(2, dayTxt.getText()+"-" + monthTxt.getText()+"-" + yearTxt.getText());
 				ps.execute();
