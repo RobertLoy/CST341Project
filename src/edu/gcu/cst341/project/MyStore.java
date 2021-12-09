@@ -1,8 +1,10 @@
 package edu.gcu.cst341.project;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -116,6 +118,7 @@ public class MyStore {
 		System.out.println();
 	}
 	
+	
 	private void readCartItems() {
 		System.out.println("View (Read) cart...");
 		System.out.println();
@@ -158,9 +161,30 @@ public class MyStore {
 		readProducts();
 	}
 	
+	// Matt Kollar
+	// 12/2/2021
 	private void readProducts() {
-		System.out.println("View (Read) all products...");
-		System.out.println();
+		System.out.println("PRODUCTS");
+		String sql = "SELECT * FROM cst341project.products;"; 
+		try {
+			Statement stmt = con.getConnection().createStatement();
+			ResultSet results = stmt.executeQuery(sql);
+			System.out.println("Product Id, Product Name,  Product Price,  Product Stock Status");
+			System.out.println("---------------------------------------------------------------------");
+			while (results.next()) {
+				System.out.println(results.getInt("ProductID") + ",   " + "\t" + "   "
+						+ results.getString("ProductName") + "," + "\t" + "   " + "$" 
+						+ results.getString("ProductPrice") + "," + "\t" + "   " + "inStock = "
+						+ results.getBoolean("ProductStockStatus"));
+
+			}
+			System.out.println();
+			stmt.close();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	//Dez adding ...I should be able to update the products in the catalog so users can add them to the shopping cart. 
 	private void updateProduct() {
