@@ -63,7 +63,7 @@ public class MyStore {
 
 			if (rs.next()) {
 				result = rs.getString("UserFirstName");
-				System.out.println("Welcome: " + rs.getString("UserFirstName")); //Allen Craig Dec 08 2021
+				System.out.println("Welcome: " + rs.getString("UserFirstName"));//Allen Craig Dec 08 2021
 			}
 			else {
 				result = null;
