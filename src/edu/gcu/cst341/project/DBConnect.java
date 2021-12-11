@@ -8,7 +8,7 @@ public class DBConnect {
 	
 	private static String URL 	= "jdbc:mysql://localhost:3306/CST341Project";
 	private static String USER 	= "root";
-	private static String PASS 	= "password";
+	private static String PASS 	= "root";
 
 	
 	private static Connection conn;
