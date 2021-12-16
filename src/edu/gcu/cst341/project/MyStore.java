@@ -21,6 +21,7 @@ public class MyStore {
 	}
 
 	public void open() {
+		String sql = "SELECT UserId, UserFirstName FROM users WHERE UserName = ? AND UserPassword = ? AND UserStatus = 1";
 		String user = null;
 		boolean exit = false;
 		do {
@@ -36,7 +37,7 @@ public class MyStore {
 					shop();
 				}
 				else {
-					System.out.println("Login unsuccessful");
+					System.out.println("Login unsuccessful"); 
 				}
 				break;
 			case 2:
@@ -64,13 +65,18 @@ public class MyStore {
 			ps.setString(2, login[1]);
 			//ps.setInt(3, productId); //added
 			ResultSet rs = ps.executeQuery();
-			
-		
-			while (rs.next()) {
-				result = rs.getString("us.UserFirstName");
-				
-				//System.out.println("Your cart: " +  rs.getInt("pd.ProductID"));//added
-				
+
+			//	result = rs.getString("us.UserFirstName");
+			//System.out.println("Your cart: " +  rs.getInt("pd.ProductID"));//added
+			//if (rs.next()) {
+      
+      while (rs.next()) {
+        result = rs.getString("us.UserFirstName");
+				//result = rs.getString("UserFirstName");
+				System.out.println("Welcome: " + rs.getString("UserFirstName"));//Allen Craig Dec 08 2021
+			}
+			else {
+				result = null;
 			}
 			
 		
