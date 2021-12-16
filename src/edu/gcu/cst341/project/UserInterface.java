@@ -48,10 +48,11 @@ public class UserInterface {
 			System.out.println("1] Add items to cart");
 			System.out.println("2] See items in cart");
 			System.out.println("3] Remove all items from cart");
+			System.out.println("4] View all products");
 			System.out.println("==================");
 			option = sc.nextInt();
 			sc.nextLine();
-		} while (option < 0 || option > 3);
+		} while (option < 0 || option > 4);
 		return option;
 	}
 	
