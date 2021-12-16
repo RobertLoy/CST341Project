@@ -21,6 +21,7 @@ public class MyStore {
 	}
 
 	public void open() {
+		String sql = "SELECT UserId, UserFirstName FROM users WHERE UserName = ? AND UserPassword = ? AND UserStatus = 1";
 		String user = null;
 		boolean exit = false;
 		do {
@@ -36,7 +37,7 @@ public class MyStore {
 					shop();
 				}
 				else {
-					System.out.println("Login unsuccessful");
+					System.out.println("Login unsuccessful"); 
 				}
 				break;
 			case 2:
@@ -50,28 +51,43 @@ public class MyStore {
 
 	private String login() {
 		String result = null;
+		//int productId = 0;//added
 
 		String [] login = UserInterface.login();
 
-		String sql = "SELECT UserId, UserFirstName FROM users WHERE UserName = ? AND UserPassword = ? AND UserStatus = 1";
+		//String sql = "SELECT us.UserId, us.UserFirstName, sp.UserId, pd.ProductID, pd.ProductName FROM users as us INNER JOIN shoppingcart as sp ON us.UserId = sp.UserId INNER JOIN products as pd ON sp.ProductId = pd.ProductID WHERE UserName = ? AND UserPassword = ? AND UserStatus = 1";
+		//String sql = "SELECT us.*, sp.UserId, pd.* FROM users as us INNER JOIN shoppingcart as sp ON us.UserId = sp.UserId INNER JOIN products as pd ON sp.ProductId = pd.ProductID WHERE UserName = ? AND UserPassword = ? AND UserStatus = 1";
+		String sql = "SELECT us.UserId, us.UserFirstName FROM users as us WHERE UserName = ? AND UserPassword = ? AND UserStatus = 1";
 
-		try (PreparedStatement ps = con.getConnection().prepareStatement(sql)){
+
+		try (PreparedStatement ps = con.getConnection().prepareStatement(sql)) {
 			ps.setString(1, login[0]);
 			ps.setString(2, login[1]);
+			//ps.setInt(3, productId); //added
 			ResultSet rs = ps.executeQuery();
 
-			if (rs.next()) {
-				result = rs.getString("UserFirstName");
+			//	result = rs.getString("us.UserFirstName");
+			//System.out.println("Your cart: " +  rs.getInt("pd.ProductID"));//added
+			//if (rs.next()) {
+      
+      while (rs.next()) {
+        result = rs.getString("us.UserFirstName");
+				//result = rs.getString("UserFirstName");
+				System.out.println("Welcome: " + rs.getString("UserFirstName"));//Allen Craig Dec 08 2021
 			}
 			else {
 				result = null;
 			}
-		}
-		catch(Exception e) {
+			
+		
+	}
+		
+	catch (SQLException e) {//changed to SQLException
 			e.printStackTrace();
 		}
 		return result;
 	}
+
 
 	private void shop() {
 		switch (UserInterface.menuShop()) {
@@ -88,11 +104,39 @@ public class MyStore {
 			break;
 		case 4: 			// Matt Kollar 12/9/21 - Added case #4 and new viewProduct() method
 			viewProduct(); 
+
 			break;
 		default:
 			return;
 		}
 	}
+	
+	//Dez added 12.10.21
+
+	private void readAllProducts() {
+		System.out.println("PRODUCTS");
+		String sql = "SELECT * FROM cst341project.products;"; 
+		try {
+			Statement stmt = con.getConnection().createStatement();
+			ResultSet results = stmt.executeQuery(sql);
+			System.out.println("Product Id, Product Name,  Product Price,  Product Stock Status");
+			System.out.println("---------------------------------------------------------------------");
+			while (results.next()) {
+			System.out.println(results.getInt("ProductID") + ",   " + "\t" + "   "
+					+ results.getString("ProductName") + "," + "\t" + "   " + "$" 
+					+ results.getString("ProductPrice") + "," + "\t" + "   " + "inStock = "
+					+ results.getBoolean("ProductStockStatus"));
+
+		}
+			System.out.println();
+			//stmt.close();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+		
 
 	private void viewProduct() { // Matt Kollar 12/9/21 - View product method added to allow user to see all products
 		System.out.println("Check out our awesome merchandise!!!");
@@ -151,6 +195,8 @@ public class MyStore {
 	private void readCartItems() {
 		System.out.println("View (Read) cart...");
 		System.out.println();
+		//sql stmt set value to user id
+		
 	}
 	
 	private void deleteCartItem() {
@@ -251,11 +297,6 @@ public class MyStore {
 	
 	try {
 
-//		System.out.println("What is your updated Product Number? [" + c1.getProductId() + "]");
-//		productId = sc.nextInt();
-//		sc.nextLine();
-//		// if (!climit.equals(""))
-//		c1.setProductId(productId);
 		
 		System.out.println("What is your Product name? [" + c1.getpName() + "] ");
 		pname = sc.nextLine();
@@ -282,14 +323,13 @@ public class MyStore {
 			
 			try {
 				PreparedStatement ps = con.getConnection().prepareStatement(sql);
-				//ps.setInt(1, productId);// specified type of parameter value compatable with sql
-				//ps.setString(1, pname);
+				
 				ps.setDouble(1, c1.getpPrice());
 				ps.setInt(2, c1.getpStockStatus());
 				ps.setString(3, c1.getpName()); 
 				ps.setInt(4, productId);
 			
-				// pst.setString(2, dayTxt.getText()+"-" + monthTxt.getText()+"-" + yearTxt.getText());
+				
 				ps.execute();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
