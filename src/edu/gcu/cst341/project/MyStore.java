@@ -37,7 +37,7 @@ public class MyStore {
 					shop();
 				}
 				else {
-					System.out.println("Login unsuccessful");
+					System.out.println("Login unsuccessful"); 
 				}
 				break;
 			case 2:
