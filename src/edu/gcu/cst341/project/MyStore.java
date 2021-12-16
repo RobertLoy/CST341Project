@@ -102,8 +102,9 @@ public class MyStore {
 		case 3:
 			deleteCartItem();
 			break;
-		case 4:
-			readAllProducts();
+		case 4: 			// Matt Kollar 12/9/21 - Added case #4 and new viewProduct() method
+			viewProduct(); 
+
 			break;
 		default:
 			return;
@@ -136,6 +137,33 @@ public class MyStore {
 		}
 	}
 		
+
+	private void viewProduct() { // Matt Kollar 12/9/21 - View product method added to allow user to see all products
+		System.out.println("Check out our awesome merchandise!!!");
+		System.out.println("====================================");
+		System.out.println("PRODUCTS");
+		String sql = "SELECT * FROM cst341project.products;"; 
+		try {
+			Statement stmt = con.getConnection().createStatement();
+			ResultSet results = stmt.executeQuery(sql);
+			System.out.println("Product Id, Product Name,  Product Price,  Product Stock Status");
+			System.out.println("---------------------------------------------------------------------");
+			while (results.next()) {
+				System.out.println(results.getInt("ProductID") + ",   " + "\t" + "   "
+						+ results.getString("ProductName") + "," + "\t" + "   " + "$" 
+						+ results.getString("ProductPrice") + "," + "\t" + "   " + "inStock = "
+						+ results.getBoolean("ProductStockStatus"));
+
+			}
+			System.out.println();
+			stmt.close();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 
 	private void admin() {
 		switch (UserInterface.menuAdmin()) {
@@ -291,7 +319,7 @@ public class MyStore {
 		e.printStackTrace();
 	}
 	
-	String sql = "UPDATE products SET productPrice = ?, productStockStatus = ?, productName = ? WHERE productId = ?"; //visit productId focus on 5th ?, disallow the productid as primary key editing
+	String sql = "UPDATE products SET productPrice = ?, productStockStatus = ?, productName = ? WHERE productID = ?"; //visit productId focus on 5th ?, disallow the productid as primary key editing
 			
 			try {
 				PreparedStatement ps = con.getConnection().prepareStatement(sql);
