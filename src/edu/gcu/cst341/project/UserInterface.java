@@ -48,10 +48,11 @@ public class UserInterface {
 			System.out.println("1] Add items to cart");
 			System.out.println("2] See items in cart");
 			System.out.println("3] Remove all items from cart");
-			System.out.println("==================");
+			System.out.println("4] View all products"); // Matt Kollar 12/9/21 - Added Option #4 to allow user to view all products
+      System.out.println("==================");
 			option = sc.nextInt();
 			sc.nextLine();
-		} while (option < 0 || option > 3);
+		} while (option < 0 || option > 4); // Matt Kollar 12/9/21 - Changed option > 3 to option > 4 to allow for use of 4th menu item
 		return option;
 	}
 	
